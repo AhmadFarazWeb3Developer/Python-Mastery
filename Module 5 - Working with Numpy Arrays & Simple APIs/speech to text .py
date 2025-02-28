@@ -1,5 +1,13 @@
 import speech_recognition as sr
+'''
+Used for capturing audio input and converting it to text.
+Relies on a microphone for input and Google's speech recognition API for processing.
+'''
+
 import pyttsx3
+'''A text-to-speech conversion library.
+Allows the program to "speak" the text output.'''
+
 
 r = sr.Recognizer()
 

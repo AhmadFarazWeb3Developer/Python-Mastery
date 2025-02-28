@@ -1,5 +1,5 @@
 # Tuple is an order sequence (means index-wise)
-# Tuples are expressed as comma-separated elements within parentheses.
+# Tuples are expressed as comma-separated elements within round brackets.
 # Tuples are immutable
 
 tuple1 = (1, 2.2, 'disco')
