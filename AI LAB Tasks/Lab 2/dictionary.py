@@ -5,3 +5,5 @@ my_dictionary = {
 }
 
 print(my_dictionary["my_list"][0])
+print(my_dictionary["my_tuple"][1])
+print(my_dictionary["var1"])
