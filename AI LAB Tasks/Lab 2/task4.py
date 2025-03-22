@@ -11,6 +11,7 @@ rivers = {
     "Yellow": "China"
 }
 
+
 print("\n------------------\n")
 for river, country in rivers.items():
     print(f"{river} runs through {country}")
