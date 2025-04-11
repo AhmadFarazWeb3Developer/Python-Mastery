@@ -15,7 +15,9 @@ def my_dfs(visited, mygraph, start_node):
         print(start_node, end=" ")
         a = mygraph[start_node]
         visited.append(start_node)
+        # print("a", a)
         for neighbors in a:
+            # print("neighbor ", neighbors)
             my_dfs(visited, mygraph, neighbors)
 
 

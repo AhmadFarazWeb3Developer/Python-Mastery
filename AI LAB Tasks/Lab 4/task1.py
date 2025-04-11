@@ -17,17 +17,15 @@ mygraph = {
 
 
 def bfs(graph, start, goal):
-    visited = []
+    visited = [start]
     queue = [start]
 
     while queue:
         node = queue.pop(0)
         print(f"Visiting: {node}")
-
         if node == goal:
             print(f"Goal {goal} reached!")
             return
-
         for neighbor in graph[node]:
             if neighbor not in visited:
                 visited.append(neighbor)

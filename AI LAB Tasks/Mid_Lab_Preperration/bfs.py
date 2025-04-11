@@ -1,4 +1,5 @@
-mygraph = {
+
+myGraph = {
     "A": ["B", "C"],
     "B": ["D", "E"],
     "C": ["F"],
@@ -7,24 +8,23 @@ mygraph = {
     "F": []
 }
 
+
 visited = []
 queue = []
 
 
-def my_bfs(mygraph, start_node):
-    global visited, queue
-    visited.append(start_node)
-    queue.append(start_node)
+def bfs(startNode, myGraph):
+    visited.append(startNode)
+    queue.append(startNode)
 
     while queue:
         a = queue.pop(0)
-
-        for neighbors in mygraph[a]:
-            print("Node of ", a, " ", neighbors)
+        for neighbors in myGraph[a]:
             if neighbors not in visited:
                 visited.append(neighbors)
+                # visited.append("->")
                 queue.append(neighbors)
+    print("Visited Path ", visited)
 
 
-my_bfs(mygraph, "A")
-print(visited)
+bfs("A", myGraph)
