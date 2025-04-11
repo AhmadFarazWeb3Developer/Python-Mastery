@@ -12,7 +12,7 @@ queue = []
 
 
 def my_bfs(mygraph, start_node):
-    global visited, queue
+    # global visited, queue
     visited.append(start_node)
     queue.append(start_node)
 

@@ -24,18 +24,22 @@ def path_cost_gbfs(path):
 
 
 def mygbfs(mygraph, start, goal):
-    visited = []
-    queue = [[(start, 0)]]
+    visited = []  # keeping track reocord of visited
+    queue = [[(start, 0)]]  # queue of lists
+    # print("Queue: ", queue)
     while queue:
-        queue.sort(key=path_cost_gbfs)
+        queue.sort(key=path_cost_gbfs)  # sort on the bais of h_cost and g_cost
+        print("Queue: ", queue)
         path = queue.pop(0)
-        node = path[-1][0]
-        if node not in visited:
+        node = path[-1][0]  # get the last node of path
+        print('Path: ', path)
+        if node not in visited:  # check if node is not visited
             visited.append(node)
             if node == goal:
                 return path
             else:
                 neighbour_nodes = mygraph.get(node, [])
+                print("Neighbour Node: ", neighbour_nodes)
                 for (node2, cost) in neighbour_nodes:
                     new_path = path.copy()
                     new_path.append((node2, cost))

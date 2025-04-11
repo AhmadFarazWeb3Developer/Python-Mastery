@@ -13,7 +13,7 @@ def rule_match(current_states):
 
 
 def simulate_light_contoller():
-    current_states = {"Bulb A": "On", "Bulb B": "Off"}
+    current_states = {"Bulb A": "Off", "Bulb B": "Off"}
     goal_states = {"Bulb A": "On", "Bulb B": "On"}
     actionTaken = 0
 
