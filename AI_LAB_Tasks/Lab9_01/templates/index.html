@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GPA Prediction</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>🎓 GPA Prediction</h1>
+      <p class="subtitle">Enter your SAT score to predict your GPA</p>
+
+      <form action="/predict" method="post">
+        <input type="text" name="sat" placeholder="e.g., 1200" required />
+        <button type="submit">Predict GPA</button>
+      </form>
+
+      {% if prediction_text %}
+      <div class="result">{{ prediction_text }}</div>
+      {% endif %}
+    </div>
+  </body>
+</html>

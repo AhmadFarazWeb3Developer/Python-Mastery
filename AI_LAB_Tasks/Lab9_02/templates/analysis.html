@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Data Analysis</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Student Data Analysis</h1>
+
+      <section class="section">
+        <h2>1. Load and Inspect Data</h2>
+        <div class="data-preview">{{ head_data | safe }}</div>
+
+        <h3>Data Information</h3>
+        <div class="data-info">
+          <div class="info-box">
+            <h4>Columns</h4>
+            <ul>
+              {% for column in data_info.columns %}
+              <li>{{ column }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+
+          <div class="info-box">
+            <h4>Data Types</h4>
+            <ul>
+              {% for col, dtype in data_info.dtypes.items() %}
+              <li><strong>{{ col }}:</strong> {{ dtype }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+
+          <div class="info-box">
+            <h4>Missing Values</h4>
+            <ul>
+              {% for col, count in data_info.missing.items() %}
+              <li><strong>{{ col }}:</strong> {{ count }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>2. Descriptive Statistics</h2>
+        <p class="total-records">
+          <strong>Total Records:</strong> {{ num_records }}
+        </p>
+
+        <div class="stats-container">
+          <div class="stats-box">
+            <h3>SAT Statistics</h3>
+            <ul>
+              <li><strong>Mean:</strong> {{ sat_stats.mean }}</li>
+              <li><strong>Median:</strong> {{ sat_stats.median }}</li>
+              <li><strong>Standard Deviation:</strong> {{ sat_stats.std }}</li>
+            </ul>
+          </div>
+
+          <div class="stats-box">
+            <h3>GPA Statistics</h3>
+            <ul>
+              <li><strong>Mean:</strong> {{ gpa_stats.mean }}</li>
+              <li><strong>Median:</strong> {{ gpa_stats.median }}</li>
+              <li><strong>Standard Deviation:</strong> {{ gpa_stats.std }}</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>3. Visualizations</h2>
+
+        <div class="visualization">
+          <h3>GPA Distribution Histogram</h3>
+          <img
+            src="{{ url_for('static', filename=histogram_img) }}"
+            alt="GPA Distribution Histogram"
+            class="chart-img"
+          />
+        </div>
+
+        <div class="visualization">
+          <h3>SAT vs GPA Scatter Plot</h3>
+          <img
+            src="{{ url_for('static', filename=scatter_img) }}"
+            alt="SAT vs GPA Scatter Plot"
+            class="chart-img"
+          />
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

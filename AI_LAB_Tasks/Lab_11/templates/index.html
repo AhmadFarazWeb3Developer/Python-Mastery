@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Churn Dataset Analysis</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <h1>Churn Dataset Analysis</h1>
+
+    <h2>Preview of the Data (Top 10 Rows)</h2>
+    {% if data %}
+    <table>
+      <thead>
+        <tr>
+          {% for key in data[0].keys() %}
+          <th>{{ key }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in data %}
+        <tr>
+          {% for value in row.values() %}
+          <td>{{ value }}</td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+
+    <h2>Column Info</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Column</th>
+          <th>Data Type</th>
+          <th>Missing Values</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for column in info['columns'] %}
+        <tr>
+          <td>{{ column }}</td>
+          <td>{{ info['dtypes'][column] }}</td>
+          <td>{{ info['missing'][column] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h2>Unique Values in Each Column</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Column</th>
+          <th>Unique Values</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for col, val in unique.items() %}
+        <tr>
+          <td>{{ col }}</td>
+          <td>{{ val }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h2>Descriptive Statistics (Numerical Columns)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Column</th>
+          <th>Mean</th>
+          <th>Median</th>
+          <th>Std Dev</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for col in stats.mean.keys() %}
+        <tr>
+          <td>{{ col }}</td>
+          <td>{{ stats.mean[col] }}</td>
+          <td>{{ stats.median[col] }}</td>
+          <td>{{ stats.std[col] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h2>Bar Plots - Categorical Columns</h2>
+    {% for plot in plots %}
+    <div>
+      <h4>{{ plot.replace('bar_', '').replace('.png', '').capitalize() }}</h4>
+      <img
+        src="{{ url_for('static', filename='plots/' + plot) }}"
+        width="400"
+      />
+    </div>
+    {% endfor %}
+
+    <h2>Pie Chart - Churn Distribution</h2>
+    <img
+      src="{{ url_for('static', filename='plots/' + churn_pie) }}"
+      width="300"
+    />
+
+    <h2>Heatmap - Numerical Correlation</h2>
+    <img
+      src="{{ url_for('static', filename='plots/' + heatmap) }}"
+      width="600"
+    />
+  </body>
+</html>
